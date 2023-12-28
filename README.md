@@ -1,6 +1,6 @@
-# SignUp and Login form with email verification
+# SignUp and Login Form with Email Verification
 
-Description of your project. Briefly explain what the project does and its main features.
+The Secure Authentication System with Email Verification is a robust web application developed using a tech stack React.js for the frontend, Node.js and Express.js for the backend, and Microsoft SQL Server for database management. The primary goal of this project is to provide a secure and user-friendly authentication system.
 
 ## Table of Contents
 
@@ -8,11 +8,6 @@ Description of your project. Briefly explain what the project does and its main 
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
 
 ## Technologies
 
