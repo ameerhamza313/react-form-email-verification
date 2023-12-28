@@ -6,8 +6,6 @@ The Secure Authentication System with Email Verification is a robust web applica
 
 - [Technologies](#technologies)
 - [Features](#features)
-- [Getting Started](#getting-started)
-- [Installation](#installation)
 
 ## Technologies
 
@@ -20,12 +18,4 @@ The Secure Authentication System with Email Verification is a robust web applica
 
 - User registration with email verification
 - User login with email and password
-
-## Getting Started
-
-Provide instructions on how to get a copy of the project up and running on a local machine for development and testing purposes.
-
-### Prerequisites
-
-List any software or dependencies that need to be installed.
 
