@@ -136,4 +136,9 @@
     order: -1; 
     margin-bottom: 20px; 
   }
+
+  .green_btn {
+    margin: 10px 0;
+    padding: 12px 0 10px; 
+  }
 }
