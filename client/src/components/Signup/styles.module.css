@@ -5,18 +5,18 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-.signup_form_container {
+  }
+  
+  .signup_form_container {
 	width: 900px;
 	height: 500px;
 	display: flex;
 	border-radius: 10px;
 	box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
-		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
-}
-
-.left {
+	  0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+  }
+  
+  .left {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
@@ -25,16 +25,16 @@
 	background-color: #3bb19b;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
-}
-
-.left h1 {
+  }
+  
+  .left h1 {
 	margin-top: 0;
 	color: white;
 	font-size: 35px;
 	align-self: center;
-}
-
-.right {
+  }
+  
+  .right {
 	flex: 2;
 	display: flex;
 	flex-direction: column;
@@ -43,61 +43,95 @@
 	background-color: white;
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
-}
-
-.form_container {
+  }
+  
+  .form_container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-}
-
-.form_container h1 {
+  }
+  
+  .form_container h1 {
 	font-size: 40px;
 	margin-top: 0;
-}
-
-.input {
+  }
+  
+  .input {
 	outline: none;
 	border: none;
-	width: 370px;
+	width: 100%; /* Adjusted width for responsiveness */
+	max-width: 370px; 
 	padding: 15px;
 	border-radius: 10px;
 	background-color: #edf5f3;
 	margin: 5px 0;
 	font-size: 14px;
-}
-
-.error_msg,
-.success_msg {
-	width: 370px;
+  }
+  
+  .error_msg,
+  .success_msg {
+	width: 100%; /* Adjusted width for responsiveness */
+	max-width: 370px; 
 	padding: 15px;
 	margin: 5px 0;
 	font-size: 14px;
-	background-color: #f34646;
-	color: white;
 	border-radius: 5px;
 	text-align: center;
-}
-
-.success_msg {
+  }
+  
+  /* Additional styles for success message */
+  .success_msg {
 	background-color: #5cdd5c;
-}
-
-.white_btn,
-.green_btn {
+  }
+  
+  /* Button styles (retained height and width for both buttons) */
+  .white_btn,
+  .green_btn {
 	border: none;
 	outline: none;
 	padding: 12px 0;
-	background-color: white;
 	border-radius: 20px;
 	width: 180px;
+	height: auto; 
 	font-weight: bold;
 	font-size: 14px;
 	cursor: pointer;
-}
-
-.green_btn {
+  }
+  
+  /* Adjusted margin for the green button */
+  .green_btn {
 	background-color: #3bb19b;
 	color: white;
-	margin: 10px;
-}
+	margin: 10px 0;
+  }
+  
+  /* Media query for smaller screens */
+  @media screen and (max-width: 768px) {
+	.signup_form_container {
+	  flex-direction: column; 
+	  height: auto; 
+	}
+  
+	.left,
+	.right {
+	  border-radius: 10px; 
+	  width: 100%; /* Full width for smaller screens */
+	}
+  
+	.left h1 {
+	  font-size: 28px; /* Smaller font size for smaller screens */
+	}
+  
+	.input,
+	.error_msg,
+	.success_msg {
+	  max-width: none; 
+	}
+  
+	/* Adjusted margin and padding for the white button on smaller screens */
+	.white_btn {
+	  margin: 10px 0; 
+	  padding: 10px 0; 
+	}
+  }
+  
