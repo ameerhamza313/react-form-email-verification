@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const db = require('../_helpers/db');
 require('dotenv').config();
 const emailService = require('./email.service');
+const validateRequest = require('../_middleware/validate-request');
 
 // Register Schema
 const registerSchema = Joi.object({
@@ -28,8 +29,10 @@ router.post('/register', validateRequest(registerSchema), register);
 // Login Route
 router.post('/login', validateRequest(loginSchema), login);
 
+// Verify Email Route
 router.get('/verify', verifyEmail);
 
+// Function to handle user registration
 async function register(req, res, next) {
     const { error } = registerSchema.validate(req.body);
     if (error) {
@@ -67,6 +70,7 @@ async function register(req, res, next) {
     }
 }
 
+// Function to handle email verification
 async function verifyEmail(req, res, next) {
     try {
         const token = req.query.token;
@@ -92,6 +96,7 @@ async function verifyEmail(req, res, next) {
     }
 }
 
+// Function to handle user login
 async function login(req, res, next) {
     try {
         // Validate the request body for login
@@ -119,28 +124,6 @@ async function login(req, res, next) {
     } catch (error) {
         next(error);
     }
-}
-
-// Validation Middleware
-function validateRequest(schema) {
-    return (req, res, next) => {
-        const options = {
-            abortEarly: false, // Include all errors
-            allowUnknown: true, // Ignore unknown props
-            stripUnknown: true // Remove unknown props
-        };
-
-        const { error, value } = schema.validate(req.body, options);
-
-        if (error) {
-            // Validation error
-            return res.status(400).json({ message: `Validation error: ${error.details.map(x => x.message).join(', ')}` });
-        } else {
-            // Validation successful
-            req.body = value;
-            next();
-        }
-    };
 }
 
 module.exports = router;

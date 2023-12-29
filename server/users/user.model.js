@@ -1,8 +1,11 @@
 const { DataTypes } = require('sequelize');
 
+// Export the model function for use in other files
 module.exports = model;
 
+// Model function to define the User model using Sequelize
 function model(sequelize) {
+    // Define the attributes (fields) of the User model
     const attributes = {
         username: { type: DataTypes.STRING, allowNull: false },
         contact: { type: DataTypes.INTEGER, allowNull: false },
@@ -11,16 +14,19 @@ function model(sequelize) {
         emailVerification: { type: DataTypes.BOOLEAN, allowNull: false }
     };
 
+    // Define options for the User model
     const options = {
+        // Default scope: exclude hash attribute by default
         defaultScope: {
-            // exclude hash by default
             attributes: { exclude: ['hash'] }
         },
+        // Scopes: additional scopes for the model
         scopes: {
-            // include hash with this scope
-            withHash: { attributes: {}, }
+            // Scope to include hash attribute
+            withHash: { attributes: {} }
         }
     };
 
+    // Define and return the 'User' model using Sequelize
     return sequelize.define('User', attributes, options);
 }
