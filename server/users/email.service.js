@@ -1,6 +1,5 @@
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
-// const { secret, email_id, passcode} = require('../config.json');
 require('dotenv').config();
 
 

@@ -59,7 +59,7 @@
   .input {
 	outline: none;
 	border: none;
-	width: 100%; /* Adjusted width for responsiveness */
+	width: 100%; 
 	max-width: 370px; 
 	padding: 15px;
 	border-radius: 10px;
@@ -70,7 +70,7 @@
   
   .error_msg,
   .success_msg {
-	width: 100%; /* Adjusted width for responsiveness */
+	width: 100%;
 	max-width: 370px; 
 	padding: 15px;
 	margin: 5px 0;
@@ -84,7 +84,7 @@
 	background-color: #5cdd5c;
   }
   
-  /* Button styles (retained height and width for both buttons) */
+
   .white_btn,
   .green_btn {
 	border: none;

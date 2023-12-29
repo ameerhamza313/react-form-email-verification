@@ -4,7 +4,6 @@ const Joi = require('joi');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../_helpers/db');
-// const { secret } = require('../config.json');
 require('dotenv').config();
 const emailService = require('./email.service');
 
