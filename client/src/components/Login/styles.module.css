@@ -102,6 +102,7 @@
 .green_btn {
   background-color: #3bb19b;
   color: white;
+  margin: 10px 0;
 }
 
 /* Media query for smaller screens */
