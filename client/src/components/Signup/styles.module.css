@@ -60,25 +60,28 @@
 	outline: none;
 	border: none;
 	width: 100%; 
-	max-width: 370px; 
+	max-width: 270px; 
 	padding: 15px;
 	border-radius: 10px;
 	background-color: #edf5f3;
 	margin: 5px 0;
 	font-size: 14px;
   }
-  
+
   .error_msg,
   .success_msg {
 	width: 100%;
 	max-width: 370px; 
-	padding: 15px;
+	/* padding: 10px; */
 	margin: 5px 0;
 	font-size: 14px;
 	border-radius: 5px;
 	text-align: center;
   }
   
+  .error_msg { 
+	color: #f34646;
+ }
   /* Additional styles for success message */
   .success_msg {
 	background-color: #5cdd5c;
@@ -118,6 +121,12 @@
 	  width: 100%; /* Full width for smaller screens */
 	}
   
+	.right {
+		order: -1; /* Change order to make green container below */
+		margin-top: 20px; /* Adjusted margin for space between containers */
+	  }
+
+
 	.left h1 {
 	  font-size: 28px; /* Smaller font size for smaller screens */
 	}
@@ -125,7 +134,7 @@
 	.input,
 	.error_msg,
 	.success_msg {
-	  max-width: none; 
+	   max-width: -webkit-fill-available;
 	}
   
 	/* Adjusted margin and padding for the white button on smaller screens */

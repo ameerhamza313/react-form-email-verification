@@ -8,7 +8,7 @@ function model(sequelize) {
     // Define the attributes (fields) of the User model
     const attributes = {
         username: { type: DataTypes.STRING, allowNull: false },
-        contact: { type: DataTypes.INTEGER, allowNull: false },
+        contact: { type: DataTypes.BIGINT, allowNull: false },
         email: { type: DataTypes.STRING, allowNull: false },
         hash: { type: DataTypes.STRING, allowNull: false },
         emailVerification: { type: DataTypes.BOOLEAN, allowNull: false }

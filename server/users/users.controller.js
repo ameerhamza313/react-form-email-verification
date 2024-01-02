@@ -84,11 +84,22 @@ async function verifyEmail(req, res, next) {
             if (!user.emailVerification) {
                 user.emailVerification = true;
                 await user.save();
-                res.send('Email verification successful. You can now log in.');
+
+                // Include a login link in the response
+                const loginLink = "http://localhost:3000/login"; // Replace with your actual login link
+                const htmlResponse = `
+                    <p>Email verification successful. You can now log in.</p> <a href="${loginLink}">Login</a>
+                `;
+                
+                res.send(htmlResponse);
             } else {
-                res.send('Email has already been verified. You can log in.');
+                // Email has already been verified
+                res.send(`
+                <p>Email has already been verified. You can now log in.</p> <a href="http://localhost:3000/login">Login</a>
+            `);
             }
         } else {
+            // User not found
             res.status(404).send('User not found');
         }
     } catch (error) {

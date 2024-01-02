@@ -17,7 +17,7 @@ function sendVerificationEmail(email, userId) {
   const token = jwt.sign(
     { sub: userId },
     process.env.SECRET,
-    { expiresIn: '10m' }
+    { expiresIn: '1d' }
   );
 
   // Create the verification link using the generated token
