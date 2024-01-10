@@ -1,5 +1,5 @@
 ﻿{
-    "dbName": "formDB",
+    "dbName": "userDB",
     "dbConfig": {
         "server": "localhost",
         "options": {

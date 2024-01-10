@@ -9,8 +9,7 @@ const emailService = require("./email.service");
 const validateRequest = require("../_middleware/validate-request");
 const { body, validationResult } = require("express-validator");
 const { parsePhoneNumberFromString } = require("libphonenumber-js");
-const validator = require('validator');
-
+const validator = require("validator");
 
 // Register Schema
 const registerSchema = Joi.object({
@@ -30,18 +29,47 @@ const loginSchema = Joi.object({
 // Register Route
 router.post(
   "/register",
+  validateData,
+  storeData,
   [
     body("username")
       .isString()
       .trim()
       .notEmpty()
       .withMessage("Username is required")
-      .matches(/^[A-Za-z]+(\.[A-Za-z]+)?$/)
-      .withMessage(
-        "Username should be 3-16 characters and should not include any special characters or numbers"
-      )
       .isLength({ min: 3, max: 16 })
-      .withMessage("Username should be between 3 and 16 characters"),
+      .withMessage("Username should be between 3 and 16 characters")
+      .custom((value) => {
+        // Check for numbers
+        if (/\d/.test(value)) {
+          throw new Error("Numbers are not allowed in the username");
+        }
+
+        // Check for special characters
+        const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+        if (specialCharRegex.test(value)) {
+          throw new Error("Special characters are not allowed in the username");
+        }
+
+        // Check for blank spaces
+        if (/\s/.test(value)) {
+          throw new Error("Blank spaces are not allowed in the username");
+        }
+
+        // Check for other characters
+        if (
+          !validator.isWhitelisted(
+            value,
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ."
+          )
+        ) {
+          throw new Error(
+            "Only letters and dot (.) are allowed in the username"
+          );
+        }
+
+        return true;
+      }),
     body("contact")
       .custom((value) => validateContactNumber(value))
       .withMessage("Invalid contact number"),
@@ -53,17 +81,16 @@ router.post(
       .bail()
       .custom((value, { req }) => validateEmail(value, { req })),
     body("password")
-      .isString()
-      .trim()
       .notEmpty()
       .withMessage("Password is required")
-      .isLength({ min: 6 })
-      .matches(
-        /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
-      )
-      .withMessage(
-        "Password should be 6-16 characters and include at least 1 letter, 1 number, and 1 special character"
-      ),
+      .custom((value) => {
+        if (!validator.isStrongPassword(value)) {
+          throw new Error(
+            "Password should be min 8 char long (include at least 1 letter, 1 number, and 1 special character)"
+          );
+        }
+        return true;
+      }),
     body("confirmpassword")
       .isString()
       .trim()

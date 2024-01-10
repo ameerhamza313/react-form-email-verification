@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
+import "react-phone-input-2/lib/style.css";
+import PhoneInput from "react-phone-input-2";
 
 const Signup = () => {
   const [data, setData] = useState({
@@ -35,7 +37,9 @@ const Signup = () => {
 
     inputs.forEach((fieldName) => {
       if (!data[fieldName] && touched[fieldName]) {
-        newErrors[fieldName] = `${fieldName.charAt(0).toUpperCase()}${fieldName.slice(1)} is required`;
+        newErrors[fieldName] = `${fieldName
+          .charAt(0)
+          .toUpperCase()}${fieldName.slice(1)} is required`;
       } else {
         newErrors[fieldName] = "";
       }
@@ -47,7 +51,7 @@ const Signup = () => {
     } else {
       newErrors.confirmpassword = "";
     }
-
+    console.log("newErrors:", newErrors);
     setErrors(newErrors);
   };
 
@@ -101,15 +105,21 @@ const Signup = () => {
               <div className={styles.error_msg}>{errors.username}</div>
             )}
 
-            <input
-              type="text"
-              placeholder="Contact Number"
-              name="contact"
-              onChange={handleChange}
-              onBlur={handleBlur}
+            <PhoneInput
+              country={"in"}
               value={data.contact}
-              required
-              className={styles.input}
+              onChange={(value, country, e, formattedValue) => {
+                const adjustedValue = value.startsWith("+")
+                  ? value
+                  : `+${value}`;
+                setData({ ...data, contact: adjustedValue });
+              }}
+              onBlur={() => {}}
+              inputProps={{
+                required: true,
+                name: "contact",
+                placeholder: "Contact Number",
+              }}
             />
             {errors.contact && (
               <div className={styles.error_msg}>{errors.contact}</div>
