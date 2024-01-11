@@ -29,8 +29,6 @@ const loginSchema = Joi.object({
 // Register Route
 router.post(
   "/register",
-  validateData,
-  storeData,
   [
     body("username")
       .isString()
