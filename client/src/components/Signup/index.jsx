@@ -35,15 +35,15 @@ const Signup = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    inputs.forEach((fieldName) => {
-      if (!data[fieldName] && touched[fieldName]) {
-        newErrors[fieldName] = `${fieldName
-          .charAt(0)
-          .toUpperCase()}${fieldName.slice(1)} is required`;
-      } else {
-        newErrors[fieldName] = "";
-      }
-    });
+    // inputs.forEach((fieldName) => {
+    //   if (!data[fieldName] && touched[fieldName]) {
+    //     newErrors[fieldName] = `${fieldName
+    //       .charAt(0)
+    //       .toUpperCase()}${fieldName.slice(1)} is required`;
+    //   } else {
+    //     newErrors[fieldName] = "";
+    //   }
+    // });
 
     // Validate passwords match
     if (data.password !== data.confirmpassword && touched.confirmpassword) {
@@ -64,6 +64,15 @@ const Signup = () => {
         const url = "http://localhost:4000/user/register";
         const { data: res } = await axios.post(url, data);
         setMsg({ success: res.message });
+
+        // Clear the form data on successful registration
+        setData({
+          username: "",
+          contact: "",
+          email: "",
+          password: "",
+          confirmpassword: "",
+        });
       } catch (error) {
         if (
           error.response &&
