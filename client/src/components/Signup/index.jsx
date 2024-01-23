@@ -61,7 +61,7 @@ const Signup = () => {
     // Check if there are no errors before submitting
     if (Object.values(errors).every((error) => error === "")) {
       try {
-        const url = "http://localhost:4000/users/register";
+        const url = "http://localhost:4000/user/register";
         const { data: res } = await axios.post(url, data);
         setMsg({ success: res.message });
       } catch (error) {
